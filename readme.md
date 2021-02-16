@@ -18,13 +18,17 @@ Parking lot uses a number of open source projects to work properly:
 
 ### Installation
 
-Install the dependencies and start the server.
-
+Install the dependencies and start the server in Interative mode:
 ```sh
 $ bin/setup
 ```
 
-To runfunctional tests.
+To run using input file.
+```sh
+$ java -jar build/libs/Parking-Lot-1.0-SNAPSHOT.jar testcase.txt
+```
+
+To run functional tests.
 ```sh
 $ bin/run_functional_tests
 ```

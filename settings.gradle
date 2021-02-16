@@ -1,4 +1,4 @@
-rootProject.name = 'ParkingLot'
+rootProject.name = 'Parking-Lot'
 include 'src:test'
 findProject(':src:test')?.name = 'test'
 
