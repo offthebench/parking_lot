@@ -1,6 +1,6 @@
 package com.gojek.strategy;
 
-import com.gojek.entity.ParkingSlot;
+import com.gojek.entity.ParkingLot;
 import com.gojek.entity.Slot;
 import com.gojek.entity.Vehicle;
 import com.gojek.exception.ParkingLotException;
@@ -27,7 +27,7 @@ public class ParkingManager implements ParkingStrategy {
 
     @Override
     public Integer createParingSlots(Long numberOfSlots) {
-        return ParkingSlot.getInstance().createParkingSlots(numberOfSlots);
+        return ParkingLot.getInstance().createParkingSlots(numberOfSlots);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class ParkingManager implements ParkingStrategy {
         nearestEmptyParkingSlot.setOccupied(true);
         nearestEmptyParkingSlot.setVehicle(vehicle);
 
-        HashMap<Long, Slot> reservedSlots = ParkingSlot.getInstance().getReservedSlots();
+        HashMap<Long, Slot> reservedSlots = ParkingLot.getInstance().getReservedSlots();
         reservedSlots.put(nearestEmptyParkingSlot.getSlotNumber(), nearestEmptyParkingSlot);
 
         return nearestEmptyParkingSlot;
@@ -50,7 +50,7 @@ public class ParkingManager implements ParkingStrategy {
     @Override
     public Slot unPark(Long slotNumber) {
         PriorityQueue<Slot> parkingSlots = getPriorityQueue();
-        HashMap<Long, Slot> reservedSlots = ParkingSlot.getInstance().getReservedSlots();
+        HashMap<Long, Slot> reservedSlots = ParkingLot.getInstance().getReservedSlots();
 
         if (!reservedSlots.containsKey(slotNumber)) {
             throw new ParkingLotException(NOT_FOUND);
@@ -67,13 +67,13 @@ public class ParkingManager implements ParkingStrategy {
 
     @Override
     public List<Slot> status() {
-        HashMap<Long, Slot> reservedSlots = ParkingSlot.getInstance().getReservedSlots();
+        HashMap<Long, Slot> reservedSlots = ParkingLot.getInstance().getReservedSlots();
         return new ArrayList<>(reservedSlots.values());
     }
 
     @Override
     public List<Vehicle> getAllVehiclesByColor(String color) {
-        HashMap<Long, Slot> reservedSlots = ParkingSlot.getInstance().getReservedSlots();
+        HashMap<Long, Slot> reservedSlots = ParkingLot.getInstance().getReservedSlots();
         return reservedSlots
                 .values()
                 .stream()
@@ -83,7 +83,7 @@ public class ParkingManager implements ParkingStrategy {
 
     @Override
     public Slot getParkingSlotByRegistrationNumber(String registrationNumber) {
-        HashMap<Long, Slot> reservedSlots = ParkingSlot.getInstance().getReservedSlots();
+        HashMap<Long, Slot> reservedSlots = ParkingLot.getInstance().getReservedSlots();
         Optional<Slot> slotOptional = reservedSlots
                 .values()
                 .stream()
@@ -101,7 +101,7 @@ public class ParkingManager implements ParkingStrategy {
 
     @Override
     public List<Slot> getReservedSlotsByVehicleColor(String color) {
-        HashMap<Long, Slot> reservedSlots = ParkingSlot.getInstance().getReservedSlots();
+        HashMap<Long, Slot> reservedSlots = ParkingLot.getInstance().getReservedSlots();
         return reservedSlots
                 .values()
                 .stream()
@@ -118,7 +118,7 @@ public class ParkingManager implements ParkingStrategy {
     }
 
     private PriorityQueue<Slot> getPriorityQueue() {
-        PriorityQueue<Slot> parkingSlots = ParkingSlot.getInstance().getParkingSlots();
+        PriorityQueue<Slot> parkingSlots = ParkingLot.getInstance().getParkingSlots();
 
         if (parkingSlots == null) {
             throw new ParkingLotException(NO_PARKING_LOTS_ALLOCATED);

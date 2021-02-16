@@ -3,20 +3,20 @@ package com.gojek.entity;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
-public class ParkingSlot {
+public class ParkingLot {
 
-    private static ParkingSlot instance;
+    private static ParkingLot instance;
     private PriorityQueue<Slot> parkingSlots;
     private HashMap<Long, Slot> reservedSlots;
 
-    private ParkingSlot() {
+    private ParkingLot() {
         parkingSlots = new PriorityQueue<>();
         reservedSlots = new HashMap<>();
     }
 
-    public static ParkingSlot getInstance() {
+    public static ParkingLot getInstance() {
         if (instance == null) {
-            instance = new ParkingSlot();
+            instance = new ParkingLot();
         }
 
         return instance;

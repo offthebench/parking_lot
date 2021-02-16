@@ -15,7 +15,7 @@ public class FileExecutor implements ParkingServiceExecutor {
 
     @Override
     public void execute() {
-        File file = new File(this.path);;
+        File file = new File(this.path);
         try (FileReader fileReader = new FileReader(file); BufferedReader bufferedReader = new BufferedReader(fileReader);) {
             String input = bufferedReader.readLine();
             while (null != input) {
