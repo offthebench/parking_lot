@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group 'com.gojek'
+version '1.0-SNAPSHOT'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13'
+}
+
+test {
+    useJUnit()
+    maxHeapSize = '1G'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.gojek.Application'
+    }
+}
